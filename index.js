@@ -5,7 +5,7 @@ const cors = require('cors')
 const moment = require("moment")
 const Stream = require("node-rtsp-stream");
 const jwt = require('jsonwebtoken')
-const { SerialPort } = require('serialport');
+// const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 
 const {createPool} = require('mysql')
@@ -68,23 +68,23 @@ var upload = multer({
 
 // Serialport Config
 
-const port = new SerialPort({
-    path: 'COM6', //EDIT AS NEEDED
-    baudRate: 9600 //EDIT AS NEEDED
-})
+// const port = new SerialPort({
+//     path: 'COM6', //EDIT AS NEEDED
+//     baudRate: 9600 //EDIT AS NEEDED
+// })
 
-const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+// const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
-var queue = [];
-parser.on('data', function(data) {
-  // push new data onto end of queue (array)
-  queue.push(data);
-});
+// var queue = [];
+// parser.on('data', function(data) {
+//   // push new data onto end of queue (array)
+//   queue.push(data);
+// });
 
-port.on('close', function (msg) {
-  console.log('1');
-  queue.push(0)
-})
+// port.on('close', function (msg) {
+//   console.log('1');
+//   queue.push(0)
+// })
 
 // Rest API's 
 
@@ -200,19 +200,19 @@ app.post("/login", async (req, response) => {
     })
 })
 
-app.get('/getweight', function(req, res) {
-    if (req.params.getFullQueue === 1) {
-      // empty complete contents of current queue,
-      // sent to client as an array of { weight: x } objects
-      const data = queue.splice(0, queue.length)
-        .map(x => ({ weight: x }));
-      console.log(data)
-      res.send(data);
-    } else {
-      // get oldest enqueued item, send it only
-      res.send({ weight: queue.shift() });
-    }
-  });
+// app.get('/getweight', function(req, res) {
+//     if (req.params.getFullQueue === 1) {
+//       // empty complete contents of current queue,
+//       // sent to client as an array of { weight: x } objects
+//       const data = queue.splice(0, queue.length)
+//         .map(x => ({ weight: x }));
+//       console.log(data)
+//       res.send(data);
+//     } else {
+//       // get oldest enqueued item, send it only
+//       res.send({ weight: queue.shift() });
+//     }
+//   });
 
 stream = new Stream({
   name: "Bunny",
