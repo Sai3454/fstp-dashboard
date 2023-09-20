@@ -3,7 +3,7 @@ var multer = require('multer')
 // const uuidv4 = require('uuid/v4')
 const cors = require('cors')
 const moment = require("moment")
-const Stream = require("node-rtsp-stream");
+// const Stream = require("node-rtsp-stream");
 const jwt = require('jsonwebtoken')
 // const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
@@ -214,29 +214,29 @@ app.post("/login", async (req, response) => {
 //     }
 //   });
 
-stream = new Stream({
-  name: "Bunny",
-  // streamUrl: "rtsp://YOUR_IP:PORT",
-  streamUrl: "rtsp://admin:Admin@123@192.168.29.13:554/Streaming/Channels/101/",
-  wsPort: 6789,  
-  ffmpegOptions: { // options ffmpeg flags
-    "-f": "mpegts", // output file format.
-    "-codec:v": "mpeg1video", // video codec
-    "-b:v": "1000k", // video bit rate
-    "-stats": "",
-    "-r": 25, // frame rate
-    "-s": "640x480", // video size
-    "-bf": 0,
-    // audio
-    "-codec:a": "mp2", // audio codec
-    "-ar": 44100, // sampling rate (in Hz)(in Hz)
-    "-ac": 1, // number of audio channels
-    "-b:a": "128k", // audio bit rate
-  },
-});
+// stream = new Stream({
+//   name: "Bunny",
+//   // streamUrl: "rtsp://YOUR_IP:PORT",
+//   streamUrl: "rtsp://admin:Admin@123@192.168.29.13:554/Streaming/Channels/101/",
+//   wsPort: 6789,  
+//   ffmpegOptions: { // options ffmpeg flags
+//     "-f": "mpegts", // output file format.
+//     "-codec:v": "mpeg1video", // video codec
+//     "-b:v": "1000k", // video bit rate
+//     "-stats": "",
+//     "-r": 25, // frame rate
+//     "-s": "640x480", // video size
+//     "-bf": 0,
+//     // audio
+//     "-codec:a": "mp2", // audio codec
+//     "-ar": 44100, // sampling rate (in Hz)(in Hz)
+//     "-ac": 1, // number of audio channels
+//     "-b:a": "128k", // audio bit rate
+//   },
+// });
 
-app.listen(9000, () => {
-    console.log("Server Running at http://localhost:9000/");
+app.listen(3000, () => {
+    console.log("Server Running at http://localhost:3000/");
   });
 
 module.exports = app
